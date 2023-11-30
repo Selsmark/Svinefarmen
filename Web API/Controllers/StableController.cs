@@ -8,11 +8,6 @@ namespace Web_API.Controllers
     [Route("[controller]")]
     public class StableController : ControllerBase
     {
-        private static readonly string[] CountryCodesAlpha2 = new[]
-        {
-            "DK", "SE", "NO", "DE"
-        };
-
         private readonly ILogger<StableController> _logger;
         private readonly IStableService _stableStockService;
 
@@ -42,6 +37,8 @@ namespace Web_API.Controllers
                 return StatusCode(500, "An unexpected error occurred.");
             }
         }
+
+
 
         [HttpGet("GetEarTagsByStableID")]
         public async Task<ActionResult<List<EarTag>>> GetEarTagsByStableID(int stableID)
@@ -85,8 +82,8 @@ namespace Web_API.Controllers
             }
         }
 
-        [HttpGet("GetAllStableInfos")]
-        public async Task<ActionResult<List<StableInfo>>> GetAllStableInfosAsync()
+        [HttpGet("GetAllStablesInfos")]
+        public async Task<ActionResult<List<StableInfo>>> GetAllStablesInfosAsync()
         {
             try
             {
@@ -106,39 +103,5 @@ namespace Web_API.Controllers
             }
         }
 
-        /*
-        [HttpGet("GetDummyEarTags")]
-        public IEnumerable<EarTag> GetDummyEarTags([FromQuery] int count)
-        {
-            return Enumerable.Range(1, count).Select(index => new EarTag
-            {
-                CountryCodeAlpha2 = CountryCodesAlpha2[Random.Shared.Next(CountryCodesAlpha2.Length)],
-                Chr = Random.Shared.Next(0, 999999),
-                HerdNumber = Random.Shared.Next(0, 99999)
-            })
-            .ToArray();
-        }
-
-        [HttpGet("GetEarTags")]
-        public async Task<ActionResult<List<EarTag>>> GetEarTags([FromQuery] string? pigstyName = null)
-        {
-            if (string.IsNullOrWhiteSpace(pigstyName))
-            {
-                return await _earTagService.GetAllEarTagsAsync();
-                //return BadRequest("The 'pigstyName' parameter is required.");
-            }
-
-            return null!;
-        }
-
-        */
-
-        /*
-        [HttpGet("GetAllEarTags")]
-        public async Task<ActionResult<EarTag>> GetAllEarTags()
-        {
-
-        }
-        */
     }
 }

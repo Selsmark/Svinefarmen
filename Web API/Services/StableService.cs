@@ -81,7 +81,7 @@ namespace Web_API.Services
             }
         }
 
-        public async Task<List<StableInfo>> GetAllStableInfosAsync()
+        public async Task<List<StableInfo>> GetAllStablesInfosAsync()
         {
             using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
             {
