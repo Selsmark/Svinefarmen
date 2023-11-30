@@ -1,0 +1,51 @@
+﻿@page "/stabledetails/{StableID}"
+
+@inject NavigationManager _navigationManager
+@inject IStableService _stableService
+
+@using Svinefarmen.Models
+@using Svinefarmen.Services
+
+<h3>Stable Stock:</h3>
+
+@if (earTags == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="stable">
+        <table class="stable__table--stock">
+            <thead>
+                <tr>
+                    <th>Country: </th>
+                    <th>CHR: </th>
+                    <th>Herd: </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var earTag in earTags)
+                {
+                    <tr>
+                        <td>@earTag.CountryCode</td>
+                        <td>@earTag.CentraleHusdyrbrugsRegisterNumber</td>
+                        <td>@earTag.HerdNumber</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public string StableID { get; set; }
+
+    private List<EarTag> earTags;
+
+    protected override async Task OnInitializedAsync()
+    {
+        //earTags = await EarTagService.GetRandomDummyEarTags(5);
+        earTags = await _stableService.GetEarTagsByStableIDAsync(int.Parse(StableID));
+    }
+}

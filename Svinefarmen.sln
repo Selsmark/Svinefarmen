@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34322.80
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Svinefarmen", "Svinefarmen\Svinefarmen.csproj", "{5C78ED73-0D21-49C5-BE29-307C4481AA99}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web API", "Web API\Web API.csproj", "{5EE73B8E-80EF-4B6C-B2AF-AFFFCE2FFD2D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5C78ED73-0D21-49C5-BE29-307C4481AA99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C78ED73-0D21-49C5-BE29-307C4481AA99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C78ED73-0D21-49C5-BE29-307C4481AA99}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{5C78ED73-0D21-49C5-BE29-307C4481AA99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C78ED73-0D21-49C5-BE29-307C4481AA99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C78ED73-0D21-49C5-BE29-307C4481AA99}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{5EE73B8E-80EF-4B6C-B2AF-AFFFCE2FFD2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EE73B8E-80EF-4B6C-B2AF-AFFFCE2FFD2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EE73B8E-80EF-4B6C-B2AF-AFFFCE2FFD2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EE73B8E-80EF-4B6C-B2AF-AFFFCE2FFD2D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A1F940B0-DC5E-49DA-B182-1987D93275A7}
+	EndGlobalSection
+EndGlobal

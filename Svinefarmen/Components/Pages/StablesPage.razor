@@ -1,0 +1,55 @@
+﻿@page "/stables"
+
+@inject NavigationManager _navigationManager
+@inject IStableService _stableService
+
+@using Svinefarmen.Models
+@using Svinefarmen.Services
+
+<h1>Stables</h1>
+
+@if (stableInfos == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="stables">
+        @foreach (var stableInfo in stableInfos)
+        {
+            <button class="stables__stableInfo__button--stable_details" @onclick="(() => HandleStableClick(stableInfo.Stable.ID))">
+                <h1 class="stables__stableInfo--name">@stableInfo.Stable.Name</h1>
+                <table class="stables__stableInfo__table--herd">
+                    <thead>
+                        <tr>
+                            <th>Besætning: </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var herd in stableInfo.HerdNumbers)
+                        {
+                            <tr>
+                                <td>@herd</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </button>
+        }
+    </div>
+}
+
+@code {
+    private List<StableInfo> stableInfos;
+
+    protected override async Task OnInitializedAsync()
+    {
+        //earTags = await EarTagService.GetRandomDummyEarTags(5);
+        stableInfos = await _stableService.GetAllStableInfosAsync();
+    }
+
+    private void HandleStableClick(int stableID)
+    {
+        _navigationManager.NavigateTo($"stabledetails/{stableID}");
+    }
+}
