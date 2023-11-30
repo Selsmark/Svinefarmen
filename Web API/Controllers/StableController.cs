@@ -87,7 +87,7 @@ namespace Web_API.Controllers
         {
             try
             {
-                List<StableInfo> stableInfos = await _stableStockService.GetAllStableInfosAsync();
+                List<StableInfo> stableInfos = await _stableStockService.GetAllStablesInfosAsync();
 
                 if (!stableInfos.Any())
                 {
