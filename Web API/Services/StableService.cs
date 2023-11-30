@@ -69,7 +69,6 @@ namespace Web_API.Services
                                 CentraleHusdyrbrugsRegisterNumber = reader.GetInt32(reader.GetOrdinal("centrale_husdyrbrugs_register_number")),
                                 HerdNumber = reader.GetInt32(reader.GetOrdinal("herd_number")),
                                 CountryCode = reader["country_code"].ToString()
-                                //HerdNumber = reader["name"].ToString(),
                             };
 
                             earTags.Add(earTag);
@@ -141,83 +140,5 @@ namespace Web_API.Services
                 }
             }
         }
-
-        /*
-        public async Task<List<EarTag>> GetAllEarTagsAsync()
-        {
-            using (var connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
-            {
-                connection.Open();
-
-                using (var command = new SqlCommand("GetAllEarTags", connection))
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    using (var reader = await command.ExecuteReaderAsync())
-                    {
-                        var earTags = new List<EarTag>();
-
-                        while (await reader.ReadAsync())
-                        {
-                            var earTag = new EarTag
-                            {
-                                CountryCodeAlpha2 = reader.GetString(2),
-                                Chr = reader.GetInt32(0),
-                                HerdNumber = reader.GetInt32(1)
-                            };
-
-                            earTags.Add(earTag);
-                        }
-
-                        return earTags;
-                    }
-                }
-            }
-        }
-        */
-
-        /*
-        public async Task<List<Pig>> GetAllPigsAsync()
-        {
-            using (var connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
-            {
-                connection.Open();
-
-                using (var command = new SqlCommand("GetAllPigs", connection))
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    using (var reader = await command.ExecuteReaderAsync())
-                    {
-                        var earTags = new List<Pig>();
-
-                        while (await reader.ReadAsync())
-                        {
-                            var pig = new Pig
-                            {
-                                ID = reader.GetInt32(0),
-                                EarTag = new EarTag
-                                {
-                                    Chr = reader.GetInt32(1),
-                                    HerdNumber = reader.GetInt32(2),
-                                    CountryCode = new CountryCode
-                                    {
-
-                                    }
-                                };
-                                CountryCodeAlpha2 = reader.GetString(2),
-                                Chr = reader.GetInt32(0),
-                                HerdNumber = reader.GetInt32(1)
-                            };
-
-                            earTags.Add(earTag);
-                        }
-
-                        return earTags;
-                    }
-                }
-            }
-        }
-    */
     }
 }

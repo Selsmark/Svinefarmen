@@ -1,7 +1,10 @@
-﻿namespace Web_API.Services
+﻿using Web_API.Data;
+
+namespace Web_API.Services
 {
     public interface IEarTagService
     {
-        public int InsertEarTag(string countryCode, int centraleHusdyrbrugsRegisterNumber, int herdNumber);
+        public Task<int> AddEarTagAsync(EarTag earTag);
+        public Task<EarTag> GetEarTagByID(int ID);
     }
 }

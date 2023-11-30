@@ -17,20 +17,20 @@ namespace Web_API.Controllers
             _earTagService = earTagService;
         }
 
-        [HttpPost]
+        [HttpPost("CreateEarTagAsync")]
         public async Task<ActionResult<EarTag>> CreateEarTagAsync(EarTag earTag)
         {
             if (earTag.CountryCode.Length != 2)
             {
                 return BadRequest("Country code should be alpha-2.");
             }
-            if (earTag.CentraleHusdyrbrugsRegisterNumber == null)
+            if (earTag.CentraleHusdyrbrugsRegisterNumber <= 0)
             {
-                return BadRequest("CHR cannot be null.");
+                return BadRequest("CHR cannot be empty or 0.");
             }
-            if (earTag.HerdNumber == null)
+            if (earTag.HerdNumber <= 0)
             {
-                return BadRequest("Herd number cannot be null.");
+                return BadRequest("Herd number cannot be empty or 0.");
             }
 
             int earTagID = await _earTagService.AddEarTagAsync(earTag);
@@ -45,7 +45,7 @@ namespace Web_API.Controllers
             {
                 EarTag earTag = await _earTagService.GetEarTagByID(ID);
 
-                if (earTag == null)
+                if (earTag.CentraleHusdyrbrugsRegisterNumber == 0)
                 {
                     return NotFound();
                 }
@@ -54,7 +54,7 @@ namespace Web_API.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "An error occured while retrieving stables.");
+                _logger.LogError(ex, "An error occured while retrieving ear tag.");
                 return StatusCode(500, "An unexpected error occurred.");
             }
         }
