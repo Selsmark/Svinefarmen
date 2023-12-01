@@ -38,8 +38,6 @@ namespace Web_API.Controllers
             }
         }
 
-
-
         [HttpGet("GetEarTagsByStableID")]
         public async Task<ActionResult<List<EarTag>>> GetEarTagsByStableID(int stableID)
         {

@@ -18,7 +18,7 @@ namespace Web_API.Controllers
         }
 
         [HttpPost("CreateEarTagAsync")]
-        public async Task<ActionResult<EarTag>> CreateEarTagAsync(EarTag earTag)
+        public async Task<ActionResult<EarTag>> CreateEarTagAsync(EarTagInsertModel earTag)
         {
             if (earTag.CountryCode.Length != 2)
             {
@@ -33,17 +33,17 @@ namespace Web_API.Controllers
                 return BadRequest("Herd number cannot be empty or 0.");
             }
 
-            int earTagID = await _earTagService.AddEarTagAsync(earTag);
+            EarTag tempEarTag = await _earTagService.AddEarTagAsync(earTag);
 
-            return CreatedAtAction(nameof(GetEarTagByID), new { id = earTagID }, earTag);
+            return CreatedAtAction(nameof(GetEarTagByID), new { id = tempEarTag.ID }, tempEarTag);
         }
 
         [HttpGet("GetEarTagByID")]
-        public async Task<ActionResult<EarTag>> GetEarTagByID(int ID)
+        public async Task<ActionResult<EarTag>> GetEarTagByID(int id)
         {
             try
             {
-                EarTag earTag = await _earTagService.GetEarTagByID(ID);
+                EarTag earTag = await _earTagService.GetEarTagByIDAsync(id);
 
                 if (earTag.CentraleHusdyrbrugsRegisterNumber == 0)
                 {

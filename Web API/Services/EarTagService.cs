@@ -14,7 +14,7 @@ namespace Web_API.Services
             _configuration = configuration;
         }
 
-        public async Task<int> AddEarTagAsync(EarTag earTag)
+        public async Task<EarTag> AddEarTagAsync(EarTagInsertModel earTag)
         {
             using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
             {
@@ -30,7 +30,15 @@ namespace Web_API.Services
 
                     var ID = await command.ExecuteScalarAsync();
 
-                    return Convert.ToInt32(ID);
+                    EarTag tempEarTag = new EarTag
+                    {
+                        ID = Convert.ToInt32(ID),
+                        CountryCode = earTag.CountryCode,
+                        CentraleHusdyrbrugsRegisterNumber = earTag.CentraleHusdyrbrugsRegisterNumber,
+                        HerdNumber = earTag.HerdNumber
+                    };
+
+                    return tempEarTag;
                 }
             }
         }
@@ -41,7 +49,7 @@ namespace Web_API.Services
             {
                 connection.Open();
 
-                using (SqlCommand command = new SqlCommand("GetHerdsByStableID", connection))
+                using (SqlCommand command = new SqlCommand("GetEarTagByID", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@earTagID", id);

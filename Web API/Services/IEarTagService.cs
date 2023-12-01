@@ -4,7 +4,7 @@ namespace Web_API.Services
 {
     public interface IEarTagService
     {
-        public Task<int> AddEarTagAsync(EarTag earTag);
-        public Task<EarTag> GetEarTagByID(int ID);
+        public Task<EarTag> AddEarTagAsync(EarTagInsertModel earTag);
+        public Task<EarTag> GetEarTagByIDAsync(int id);
     }
 }
